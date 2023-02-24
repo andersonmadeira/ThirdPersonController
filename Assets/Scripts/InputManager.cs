@@ -5,10 +5,16 @@ using UnityEngine;
 public class InputManager : MonoBehaviour
 {
     PlayerControls playerControls;
+    AnimationManager animationManager;
 
     public Vector2 _movementInput;
     float _verticalMovement;
     float _horizontalMovement;
+
+    void Awake()
+    {
+        animationManager = GetComponent<AnimationManager>();        
+    }
 
     void OnEnable()
     {
@@ -36,6 +42,8 @@ public class InputManager : MonoBehaviour
     {
         _verticalMovement = _movementInput.y;
         _horizontalMovement = _movementInput.x;
+        float movementAmount = Mathf.Clamp01(Mathf.Abs(_horizontalMovement) + Mathf.Abs(_verticalMovement));
+        animationManager.UpdateAnimationValues(0, movementAmount);
     }
 
     public float GetVerticalMovement()
