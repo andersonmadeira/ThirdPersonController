@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    CameraManager cameraManager;
     InputManager inputManager;
     PlayerMovement playerMovement;
 
@@ -22,5 +24,10 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         playerMovement.HandleAllMovement();    
+    }
+
+    void LateUpdate()
+    {
+        cameraManager.HandleAllMovement();
     }
 }
