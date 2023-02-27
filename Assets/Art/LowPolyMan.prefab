@@ -3354,8 +3354,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c842e2d7613fff441bb4ca26201e2e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementInput: {x: 0, y: 0}
-  _cameraInput: {x: 0, y: 0}
+  _playerMovementInput: {x: 0, y: 0}
+  _cameraRotationInput: {x: 0, y: 0}
+  IsCameraBeingControlled: 0
 --- !u!114 &9082237000294079983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3368,7 +3369,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d6e4db559dd5244ba2eed7695ba85d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 7
+  _walkSpeed: 1.5
+  _runSpeed: 5
+  _sprintSpeed: 7
   _rotationSpeed: 15
 --- !u!114 &8972498003825445068
 MonoBehaviour:

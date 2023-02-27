@@ -9,12 +9,13 @@ public class InputManager : MonoBehaviour
     PlayerControls playerControls;
     AnimationManager animationManager;
 
-    public Vector2 _movementInput;
-    public Vector2 _cameraInput;
+    public Vector2 _playerMovementInput;
+    public Vector2 _cameraRotationInput;
 
     float cameraVerticalInput;
     float cameraHorizontalInput;
 
+    float _movementAmount;
     float _verticalMovement;
     float _horizontalMovement;
 
@@ -40,14 +41,19 @@ public class InputManager : MonoBehaviour
         playerControls.Enable();
     }
 
+    public float GetPlayerMovementAmount()
+    {
+        return _movementAmount;
+    }
+
     void OnPlayerMovement(InputAction.CallbackContext ctx)
     {
-        _movementInput = ctx.ReadValue<Vector2>();
+        _playerMovementInput = ctx.ReadValue<Vector2>();
     }
 
     void OnCameraRotation(InputAction.CallbackContext ctx)
     {
-        _cameraInput = ctx.ReadValue<Vector2>();
+        _cameraRotationInput = ctx.ReadValue<Vector2>();
     }
 
     void OnCameraRotationActivated(InputAction.CallbackContext ctx)
@@ -80,12 +86,12 @@ public class InputManager : MonoBehaviour
 
     void HandleMovementInput()
     {
-        _verticalMovement = _movementInput.y;
-        _horizontalMovement = _movementInput.x;
-        cameraVerticalInput = _cameraInput.y;
-        cameraHorizontalInput = _cameraInput.x;
-        float movementAmount = Mathf.Clamp01(Mathf.Abs(_horizontalMovement) + Mathf.Abs(_verticalMovement));
-        animationManager.UpdateAnimationValues(0, movementAmount);
+        _verticalMovement = _playerMovementInput.y;
+        _horizontalMovement = _playerMovementInput.x;
+        cameraVerticalInput = _cameraRotationInput.y;
+        cameraHorizontalInput = _cameraRotationInput.x;
+        _movementAmount = Mathf.Clamp01(Mathf.Abs(_horizontalMovement) + Mathf.Abs(_verticalMovement));
+        animationManager.UpdateAnimationValues(0, _movementAmount);
     }
 
     public float GetVerticalMovement()

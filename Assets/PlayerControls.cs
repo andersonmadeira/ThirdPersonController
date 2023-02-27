@@ -123,7 +123,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Left JoyStick"",
                     ""id"": ""58acab70-ff37-4227-a5e2-16c3e12e8101"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=2)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

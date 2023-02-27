@@ -12,7 +12,11 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody _playerRigidbody;
 
     [SerializeField]
-    float _movementSpeed = 7;
+    float _walkSpeed = 1.5f;
+    [SerializeField]
+    float _runSpeed = 5f;
+    [SerializeField]
+    float _sprintSpeed = 7f;
 
     [SerializeField]
     float _rotationSpeed = 15;
@@ -34,7 +38,16 @@ public class PlayerMovement : MonoBehaviour
     {
         CalculateMovementDirection();
 
-        _movementDirection *= _movementSpeed;
+        float movementAmount = _inputManager.GetPlayerMovementAmount();
+
+        if (movementAmount > 0.5f)
+        {
+            _movementDirection *= _runSpeed;
+        }
+        else
+        {
+            _movementDirection *= _walkSpeed;
+        }
 
         Vector3 movementVelocity = _movementDirection;
         _playerRigidbody.velocity = movementVelocity;
